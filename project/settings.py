@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # MY PAKAGE
+      'drf_yasg',
     "django_bootstrap5",
      "taggit" ,
      'django_summernote',

@@ -14,5 +14,7 @@ urlpatterns = [
 
     # api url
     path('postapi/api',api.PostApi.as_view()),
+    path('postapi/<int:pk>',api.PostDetailApi.as_view()),
+    path('postall/all/<int:pk>',api.PostAllApi.as_view()),
    
 ]

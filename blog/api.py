@@ -1,4 +1,4 @@
-from .serializers import PostSerializers
+from .serializers import PostSerializers,PostDetailSerilizers
 from rest_framework import filters
 from rest_framework import filters
 from .mypagination import MyPagination
@@ -24,5 +24,14 @@ class PostApi(generics.ListAPIView):
 
     
     pagination_class=MyPagination
+
+
+class PostDetailApi(generics.RetrieveAPIView):
+    queryset=Post.objects.all()
+    serializer_class=PostDetailSerilizers
+
+class PostAllApi(generics.RetrieveUpdateDestroyAPIView):
+    queryset=Post.objects.all()
+    serializer_class=PostDetailSerilizers
 
     

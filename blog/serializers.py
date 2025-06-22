@@ -16,3 +16,16 @@ class PostSerializers(serializers.ModelSerializer):
     class Meta:
         model=Post
         fields='__all__'
+
+class PostDetailSerilizers(serializers.ModelSerializer):
+    category=serializers.StringRelatedField()
+    class Meta:
+        model=Post
+        fields='__all__'
+
+class PostAllSerailizers(serializers.ModelSerializer):
+    class Meta:
+        model=Post
+        fields='__all__'
+
+        
