@@ -44,3 +44,17 @@ class Location(models.Model):
 
     def __str__(self):
         return self.city
+    
+class ApplyUser(models.Model):
+    user=models.ForeignKey(User,related_name='apply_user',on_delete=models.CASCADE)
+    job=models.ForeignKey(Job,related_name='apply_job',on_delete=models.CASCADE)
+    name=models.CharField(max_length=120)
+    email=models.CharField(max_length=75)
+    website=models.URLField(null=True,blank=True)
+    image=models.ImageField(upload_to='image')
+    cv=models.FileField(upload_to='cv')
+    content=models.TextField(max_length=1500)
+    created_at=models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return self.name

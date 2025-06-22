@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+      <!-- bradcam_area  -->
+    <div class="bradcam_area bradcam_bg_1">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="bradcam_text">
+                        <h3>Candidates</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ bradcam_area  -->
+
+    <!-- featured_candidates_area_start  -->
+    <div class="featured_candidates_area candidate_page_padding">
+        <div class="container">
+            <div class="row">
+
+            
+            {% for object in alluser %}
+                
+               
+                <div class="col-md-6 col-lg-3">
+                    <div class="single_candidates text-center">
+                        <div class="thumb">
+                            <img src="{{object.image.url}}" alt="">
+                        </div>
+                        <a href="#"><h4>{{object.name}}</h4></a>
+                        <p>{{object.job}}</p>
+                    </div>
+                </div>
+            {% endfor %}
+               
+            </div>
+        
+        {% if alluser.has_other_pages %}
+            
+          <div class="row">
+                <div class="col-lg-12">
+                    <div class="pagination_wrap">
+                        <ul>
+                        
+                        {% if alluser.has_previous %}
+                           <li><a href="?page={{alluser.previous_page_nubmer}}"> <i class="ti-angle-left"></i> </a></li> 
+                        {% endif %}
+                            
+                            
+                        
+                        {% for i  in alluser.paginator.page_range %}
+                            
+                            {% if i >= alluser.number|add:'-2' and i <= alluser.number|add:'2' %}
+                                <li><a href="?page={{i}}"><span>{{i}}</span></a></li>
+                            {% endif %}
+                                
+                        {% endfor %}
+                            
+
+                            
+                         
+
+                        
+                        {% if alluser.has_next %}
+                           <li><a href="?page={{alluser.next_page_number}}"> <i class="ti-angle-right"></i> </a></li> 
+                        {% endif %}
+                            
+                            
+
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+        </div>
+    </div>
+    <!-- featured_candidates_area_end  -->
+{% endblock body %}
+    

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% load django_bootstrap5 %}
+
+{% block body %}
+        <!-- bradcam_area  -->
+    <div class="bradcam_area bradcam_bg_1">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="bradcam_text">
+                        <h3>{{job.title}}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ bradcam_area  -->
+    <div class="container">
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+              {% bootstrap_form form %}
+                               <div class="col-md-12">
+                                    <div class="submit_btn">
+                                        <button class="boxed-btn3 w-100" type="submit">Add Job</button>
+                                    </div>
+                                </div>
+        </form>
+    </div>
+{% endblock body %}
+    

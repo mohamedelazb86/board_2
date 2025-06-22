@@ -28,6 +28,7 @@
     <link rel="stylesheet" href="{% static 'en/css/slicknav.css' %}">
 
     <link rel="stylesheet" href="{% static 'en/css/style.css' %}">
+
     <!-- <link rel="stylesheet" href="css/responsive.css"> -->
 </head>
 
@@ -54,31 +55,43 @@
                                 <div class="main-menu  d-none d-lg-block">
                                     <nav>
                                         <ul id="navigation">
-                                            <li><a href="index.html">home</a></li>
-                                            <li><a href="jobs.html">Browse Job</a></li>
-                                            <li><a href="#">pages <i class="ti-angle-down"></i></a>
+                                            <li><a href="/">home</a></li>
+                                            <li><a href="/job/">Browse Job</a></li>
+                                            <li><a href="">pages <i class="ti-angle-down"></i></a>
                                                 <ul class="submenu">
-                                                    <li><a href="candidate.html">Candidates </a></li>
-                                                    <li><a href="job_details.html">job details </a></li>
-                                                    <li><a href="elements.html">elements</a></li>
+                                                    <li><a href="/accounts/candidator">Candidates </a></li>
+                                                    
                                                 </ul>
                                             </li>
                                             <li><a href="/blog/">blog </i></a>
                                              
                                             </li>
-                                            <li><a href="contact.html">Contact</a></li>
+                                            <li><a href="/accounts/contact">Contact</a></li>
                                         </ul>
                                     </nav>
                                 </div>
                             </div>
                             <div class="col-xl-3 col-lg-3 d-none d-lg-block">
                                 <div class="Appointment">
-                                    <div class="phone_num d-none d-xl-block">
-                                        <a href="#">Log in</a>
-                                    </div>
-                                    <div class="d-none d-lg-block">
-                                        <a class="boxed-btn3" href="#">Post a Job</a>
-                                    </div>
+
+                                    
+                                    {% if user.is_authenticated %}
+                                        <div class="phone_num d-none d-xl-block">
+                                                
+                                                <a href="/accounts/signup">Signup</a>
+                                        </div>
+                                            <div class="d-none d-lg-block">
+                                                <a class="boxed-btn3" href="{% url 'job:add-job' %}">Post a Job</a>
+                                            </div> 
+                                        {% else %}
+                                         <div class="phone_num d-none d-xl-block">
+                                                <a href="/accounts/login">Log in</a>
+
+                                         </div>
+
+                                    {% endif %}
+                                        
+                                   
                                 </div>
                             </div>
                             <div class="col-12">
@@ -96,6 +109,9 @@
   
 
 
+    
+   
+        
 
 
 
@@ -128,13 +144,13 @@
                         <div class="footer_widget wow fadeInUp" data-wow-duration="1s" data-wow-delay=".3s">
                             <div class="footer_logo">
                                 <a href="#">
-                                    <img src="img/logo.png" alt="">
+                                    <img src="{{data.image.url}}" alt="" style="width: 80px; height: auto;">
                                 </a>
                             </div>
                             <p>
-                                finloan@support.com <br>
-                                +10 873 672 6782 <br>
-                                600/D, Green road, NewYork
+                                {{data.email}} <br>
+                                +{{data.phone}}<br>
+                                {{data.address}}
                             </p>
                             <div class="socail_links">
                                 <ul>
@@ -255,6 +271,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
 
     <script src="{% static 'en/js/main.js' %}"></script>
+
 </body>
 
 </html>

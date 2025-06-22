@@ -44,10 +44,12 @@ INSTALLED_APPS = [
     "django_bootstrap5",
      "taggit" ,
      'django_summernote',
+     'django_filters',
 
     # MY APPS
     'blog',
     'job',
+    'settings',
 
 
 ]
@@ -75,6 +77,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'settings.context_data.get_contet_data',
             ],
         },
     },

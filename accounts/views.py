@@ -2,7 +2,14 @@ from django.shortcuts import render,redirect
 from .forms import SignupForm,ActivateForm
 from django.core.mail import send_mail
 from .models import Profile
+from job.models import ApplyUser
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
+
+from django.core.paginator import Paginator
+from django.core.mail import send_mail
+from django.conf import settings
+
 
 def signup(request):
     '''
@@ -62,3 +69,36 @@ def actiavte(request,username):
     else:
         form=ActivateForm()
     return render(request,'accounts/activate_code.html',{'form':form})
+@login_required
+def candidater(request):
+    alluser=ApplyUser.objects.all()
+
+
+    paginator = Paginator(alluser, 24)  # Show 25 contacts per page.
+
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
+
+
+    context={
+        'alluser':page_obj
+    }
+
+    return render(request,'accounts/candidater.html',context)
+
+def contact(request):
+    if request.method =='POST':
+        email=request.POST['email']
+        subject=request.POST['subject']
+        message=request.POST['message']
+
+        send_mail(
+                subject,
+                message,
+                settings.EMAIL_HOST_USER,
+                [email],
+                fail_silently=False,
+            )
+
+
+    return render(request,'accounts/contact.html',{})
