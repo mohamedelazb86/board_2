@@ -45,6 +45,9 @@ INSTALLED_APPS = [
      "taggit" ,
      'django_summernote',
      'django_filters',
+     'rest_framework',
+     
+      
 
     # MY APPS
     'blog',
@@ -53,6 +56,15 @@ INSTALLED_APPS = [
 
 
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 25,
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
+   
+}
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
